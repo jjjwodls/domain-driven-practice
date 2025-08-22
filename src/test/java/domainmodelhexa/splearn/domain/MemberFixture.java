@@ -3,7 +3,7 @@ package domainmodelhexa.splearn.domain;
 public class MemberFixture {
 
     public static MemberRegisterRequest createMemberRegisterRequest(String email){
-        return new MemberRegisterRequest(email, "jaess", "secret");
+        return new MemberRegisterRequest(email, "jaess", "secret_long");
     }
 
     public static MemberRegisterRequest createMemberRegisterRequest() {

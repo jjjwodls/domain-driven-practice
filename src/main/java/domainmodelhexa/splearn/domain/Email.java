@@ -1,10 +1,7 @@
 package domainmodelhexa.splearn.domain;
 
-import jakarta.persistence.Embeddable;
-
 import java.util.regex.Pattern;
 
-@Embeddable
 public record Email(String address) {
 
     private static final String EMAIL_REGEX =

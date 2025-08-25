@@ -1,6 +1,6 @@
 package domainmodelhexa.splearn.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +16,8 @@ import static org.springframework.util.Assert.state;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @NaturalIdCache
-public class Member {
+public class Member extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Embedded
     @NaturalId //비지니스적으로 의미가 있는 id
     private Email email;
 
@@ -30,7 +25,6 @@ public class Member {
 
     private String passwordHash;
 
-    @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
     public static Member register(MemberRegisterRequest registerRequest, PasswordEncoder passwordEncoder) {

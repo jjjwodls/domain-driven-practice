@@ -1,8 +1,8 @@
-package domainmodelhexa.splearn.application.provided;
+package domainmodelhexa.splearn.application.member.provided;
 
 import domainmodelhexa.splearn.SplearnTestConfiguration;
-import domainmodelhexa.splearn.domain.Member;
 import domainmodelhexa.splearn.domain.MemberFixture;
+import domainmodelhexa.splearn.domain.member.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
-package domainmodelhexa.splearn.application.required;
+package domainmodelhexa.splearn.application.member.required;
 
-import domainmodelhexa.splearn.domain.Email;
-import domainmodelhexa.splearn.domain.Member;
+import domainmodelhexa.splearn.domain.member.Member;
+import domainmodelhexa.splearn.domain.shared.Email;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;

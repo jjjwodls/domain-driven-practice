@@ -1,12 +1,12 @@
-//package domainmodelhexa.splearn.application.provided;
+//package domainmodelhexa.splearn.application.member.provided;
 //
 //import domainmodelhexa.splearn.application.MemberService;
-//import domainmodelhexa.splearn.application.required.EmailSender;
-//import domainmodelhexa.splearn.application.required.MemberRepository;
-//import domainmodelhexa.splearn.domain.Email;
-//import domainmodelhexa.splearn.domain.Member;
+//import domainmodelhexa.splearn.application.member.required.EmailSender;
+//import domainmodelhexa.splearn.application.member.required.MemberRepository;
+//import domainmodelhexa.splearn.domain.shared.Email;
+//import domainmodelhexa.splearn.domain.member.Member;
 //import domainmodelhexa.splearn.domain.MemberFixture;
-//import domainmodelhexa.splearn.domain.MemberStatus;
+//import domainmodelhexa.splearn.domain.member.MemberStatus;
 //import org.junit.jupiter.api.Test;
 //import org.mockito.Mockito;
 //import org.springframework.test.util.ReflectionTestUtils;

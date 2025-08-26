@@ -1,5 +1,9 @@
 package domainmodelhexa.splearn.domain;
 
+import domainmodelhexa.splearn.domain.member.Member;
+import domainmodelhexa.splearn.domain.member.MemberInfoUpdateRequest;
+import domainmodelhexa.splearn.domain.member.MemberStatus;
+import domainmodelhexa.splearn.domain.member.PasswordEncoder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +30,9 @@ class MemberTest {
 
     @Test
     void registerMember() {
+
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
+        assertThat(member.getDetail().getRegisteredAt()).isNotNull();
     }
 
 //    spot bug 에서 예외나므로 주석
@@ -41,6 +47,7 @@ class MemberTest {
         member.activate();
 
         assertThat(member.getStatus()).isEqualTo(MemberStatus.ACTIVE);
+        assertThat(member.getDetail().getActivatedAt()).isNotNull();
     }
 
     @Test
@@ -59,6 +66,7 @@ class MemberTest {
         member.deactivate();
 
         assertThat(member.getStatus()).isEqualTo(MemberStatus.DEACTIVE);
+        assertThat(member.getDetail().getDeactivatedAt()).isNotNull();
     }
 
     @Test
@@ -104,6 +112,7 @@ class MemberTest {
         member.deactivate();
 
         assertThat(member.isActive()).isFalse();
+
     }
 
     @Test
@@ -114,4 +123,18 @@ class MemberTest {
         Member.register(createMemberRegisterRequest(), passwordEncoder);
 
     }
+    
+    @Test
+    void updateInfo(){
+        member.activate();
+
+        var request = new MemberInfoUpdateRequest("Jang", "jaein100", "자기소개");
+        
+        member.updateInfo(request);
+        
+        assertThat(member.getNickname()).isEqualTo(request.nickname());
+        assertThat(member.getDetail().getProfile().address()).isEqualTo(request.profileAddress());
+        assertThat(member.getDetail().getIntroduction()).isEqualTo(request.introduction());
+    }
+
 }

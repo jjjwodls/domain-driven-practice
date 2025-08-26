@@ -1,6 +1,6 @@
 package domainmodelhexa.splearn.adapter.integration;
 
-import domainmodelhexa.splearn.domain.Email;
+import domainmodelhexa.splearn.domain.shared.Email;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.StdIo;
 import org.junitpioneer.jupiter.StdOut;

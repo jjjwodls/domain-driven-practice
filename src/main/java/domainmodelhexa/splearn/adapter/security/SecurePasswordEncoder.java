@@ -1,6 +1,6 @@
 package domainmodelhexa.splearn.adapter.security;
 
-import domainmodelhexa.splearn.domain.PasswordEncoder;
+import domainmodelhexa.splearn.domain.member.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

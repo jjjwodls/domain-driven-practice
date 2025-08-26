@@ -1,6 +1,6 @@
-package domainmodelhexa.splearn.application.required;
+package domainmodelhexa.splearn.application.member.required;
 
-import domainmodelhexa.splearn.domain.Email;
+import domainmodelhexa.splearn.domain.shared.Email;
 
 /**
  * 이메일을 발송한다.

@@ -1,7 +1,7 @@
 package domainmodelhexa.splearn.adapter.integration;
 
-import domainmodelhexa.splearn.application.required.EmailSender;
-import domainmodelhexa.splearn.domain.Email;
+import domainmodelhexa.splearn.application.member.required.EmailSender;
+import domainmodelhexa.splearn.domain.shared.Email;
 import org.springframework.context.annotation.Fallback;
 import org.springframework.stereotype.Component;
 

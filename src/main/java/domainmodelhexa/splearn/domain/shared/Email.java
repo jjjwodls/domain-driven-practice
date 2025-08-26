@@ -1,4 +1,4 @@
-package domainmodelhexa.splearn.domain;
+package domainmodelhexa.splearn.domain.shared;
 
 import java.util.regex.Pattern;
 

@@ -1,9 +1,9 @@
-package domainmodelhexa.splearn.application;
+package domainmodelhexa.splearn.application.member;
 
 
-import domainmodelhexa.splearn.application.provided.MemberFinder;
-import domainmodelhexa.splearn.application.required.MemberRepository;
-import domainmodelhexa.splearn.domain.Member;
+import domainmodelhexa.splearn.application.member.provided.MemberFinder;
+import domainmodelhexa.splearn.application.member.required.MemberRepository;
+import domainmodelhexa.splearn.domain.member.Member;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

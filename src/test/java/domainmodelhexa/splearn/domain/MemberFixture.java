@@ -1,5 +1,8 @@
 package domainmodelhexa.splearn.domain;
 
+import domainmodelhexa.splearn.domain.member.MemberRegisterRequest;
+import domainmodelhexa.splearn.domain.member.PasswordEncoder;
+
 public class MemberFixture {
 
     public static MemberRegisterRequest createMemberRegisterRequest(String email){

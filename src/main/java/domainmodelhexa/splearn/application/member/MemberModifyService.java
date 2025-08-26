@@ -1,10 +1,11 @@
-package domainmodelhexa.splearn.application;
+package domainmodelhexa.splearn.application.member;
 
-import domainmodelhexa.splearn.application.provided.MemberFinder;
-import domainmodelhexa.splearn.application.provided.MemberRegister;
-import domainmodelhexa.splearn.application.required.EmailSender;
-import domainmodelhexa.splearn.application.required.MemberRepository;
-import domainmodelhexa.splearn.domain.*;
+import domainmodelhexa.splearn.application.member.provided.MemberFinder;
+import domainmodelhexa.splearn.application.member.provided.MemberRegister;
+import domainmodelhexa.splearn.application.member.required.EmailSender;
+import domainmodelhexa.splearn.application.member.required.MemberRepository;
+import domainmodelhexa.splearn.domain.member.*;
+import domainmodelhexa.splearn.domain.shared.Email;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 @Transactional
 @RequiredArgsConstructor
 @Validated
-public class MemberModifyService implements MemberRegister{
+public class MemberModifyService implements MemberRegister {
 
     private final MemberFinder memberFinder;
     private final MemberRepository memberRepository;
@@ -40,6 +41,24 @@ public class MemberModifyService implements MemberRegister{
         Member member = memberFinder.find(memberId);
 
         member.activate();
+
+        return memberRepository.save(member);
+    }
+
+    @Override
+    public Member deactivate(Long memberId) {
+        Member member = memberFinder.find(memberId);
+
+        member.deactivate();
+
+        return memberRepository.save(member);
+    }
+
+    @Override
+    public Member updateInfo(Long memberId, MemberInfoUpdateRequest memberInfoUpdateRequest) {
+        Member member = memberFinder.find(memberId);
+
+        member.updateInfo(memberInfoUpdateRequest);
 
         return memberRepository.save(member);
     }

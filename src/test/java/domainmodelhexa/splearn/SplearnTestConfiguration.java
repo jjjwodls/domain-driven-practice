@@ -1,8 +1,8 @@
 package domainmodelhexa.splearn;
 
-import domainmodelhexa.splearn.application.required.EmailSender;
+import domainmodelhexa.splearn.application.member.required.EmailSender;
 import domainmodelhexa.splearn.domain.MemberFixture;
-import domainmodelhexa.splearn.domain.PasswordEncoder;
+import domainmodelhexa.splearn.domain.member.PasswordEncoder;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 

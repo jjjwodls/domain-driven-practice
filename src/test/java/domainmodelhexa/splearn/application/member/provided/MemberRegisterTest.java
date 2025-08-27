@@ -72,6 +72,14 @@ record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityMan
         return member;
     }
 
+    private Member registerMember(String email) {
+        Member member = memberRegister.register(MemberFixture.createMemberRegisterRequest(email));
+
+        entityManager.flush();
+        entityManager.clear();
+        return member;
+    }
+
     @Test
     void updateInfo(){
         Member member = registerMember();
@@ -86,6 +94,34 @@ record MemberRegisterTest(MemberRegister memberRegister, EntityManager entityMan
 
         assertThat(member.getNickname()).isEqualTo(request.nickname());
         assertThat(member.getDetail().getProfile().address()).isEqualTo(request.profileAddress());
+    }
+
+    @Test
+    void updateInfoFail(){
+        Member member = registerMember();
+        memberRegister.activate(member.getId());
+        var request = new MemberInfoUpdateRequest("Jang22", "jaein100", "자기소개");
+        memberRegister.updateInfo(member.getId(), request);
+        Member member2 = registerMember("jaessJang2@splearn.com");
+        memberRegister.activate(member2.getId());
+        entityManager.flush();
+        entityManager.clear();
+
+        //member2는 member 와 같은 프로필을 사용할 수 없다.
+        assertThatThrownBy(() -> memberRegister.updateInfo(member2.getId(), new MemberInfoUpdateRequest("Jang22", "jaein100", "자기소개")))
+                .isInstanceOf(DuplicateProfileException.class);
+
+        //다른 프로필 주소로는 변경 가능
+        memberRegister.updateInfo(member2.getId(), new MemberInfoUpdateRequest("Jang22", "jaein101", "자기소개"));
+
+        //기존 프로필 주소 변경 가능
+        memberRegister.updateInfo(member.getId(), new MemberInfoUpdateRequest("Jang22", "jaein100", "자기소개"));
+        //프로필 주소 제거하는것 사용 가능
+        memberRegister.updateInfo(member.getId(), new MemberInfoUpdateRequest("Jang22", "", "자기소개"));
+
+        //프로필 주소 중복은 허용하지 않는다.
+        assertThatThrownBy(() -> memberRegister.updateInfo(member.getId(), new MemberInfoUpdateRequest("Jang22", "jaein101", "자기소개")))
+                .isInstanceOf(DuplicateProfileException.class);
     }
 
     @Test

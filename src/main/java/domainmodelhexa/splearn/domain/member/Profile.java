@@ -6,7 +6,7 @@ import jakarta.persistence.Embeddable;
 import java.util.regex.Pattern;
 
 @Embeddable
-public record Profile(@Column(length = 20) String address) {
+public record Profile(String address) {
     private static final Pattern PROFILE_ADDRESS_REGEX = Pattern.compile("[a-z0-9]+");
 
     public Profile{

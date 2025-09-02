@@ -12,6 +12,8 @@ import domainmodelhexa.splearn.domain.member.MemberRegisterRequest;
 import domainmodelhexa.splearn.domain.member.MemberStatus;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -63,6 +65,26 @@ public class MemberApiTest {
         assertThat(member.getNickname()).isEqualTo(request.nickname());
         assertThat(member.getStatus()).isEqualTo(MemberStatus.PENDING);
 
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "invalid-email",
+            "invalid-email@",
+            "invalid-email@test.",
+            "invalid-email@.com"
+    })
+    void badRequestTest(String email) throws JsonProcessingException {
+        MemberRegisterRequest request = MemberFixture.createMemberRegisterRequest(email);
+        String requestJson = objectMapper.writeValueAsString(request);
+
+        MvcTestResult result = mockMvcTester.post().uri("/api/members") //mockMvcTester 를 통해 쉽게 assertThat 으로 가능
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestJson).exchange();
+
+        assertThat(result)
+                .apply(print())// 성공, 실패에 관계 없이 결과를 출력해줌.
+                .hasStatus(HttpStatus.BAD_REQUEST);
     }
 
     @Test
